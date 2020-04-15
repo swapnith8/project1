@@ -2,11 +2,12 @@
 <html>
     <head>
         <title>Registration!!</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
     </head>
-    <body><br>
+    <body style="background-image: url_('1.jpg');">
+      <br>
 
         <div class="container">
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -18,7 +19,7 @@
           </nav><br>
           <h1>&nbsp;CREATE A NEW ACCOUNT</h1> <br>
 
-        <form>
+        <form action="{{url_for('cont')}}"method="post">
             <label for ="username"><strong>&emsp;&emsp;&emsp;&nbsp;&nbsp;User name &ensp;</strong></label>
             <input type="text" id="username" placeholder="Enter Username"name="username"><br>
 

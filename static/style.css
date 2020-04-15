@@ -23,8 +23,7 @@ div{
 }
 body{
     background-image: url('1.jpg');
-    background-size: cover; 
     background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
 }
