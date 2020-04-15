@@ -19,3 +19,15 @@ I.e; it displayed "Project 1: TODO"!
 
 Time elapsed for this task : 50-60mins
 
+
+Task 3 - Goodreads API:
+
+Created an account in GoodReads and I got a key.
+By using that API key I have created a sample file with given code in the description.
+I tried executing the python file but I got an error “requests not found”.
+But after I installed requests by using the command “pip install requests" in the command prompt.
+After this  the python file got executed with no errors. The content got printed.
+
+Time elapsed for this task : 30mins
+
+
