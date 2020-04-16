@@ -24,9 +24,12 @@ db = scoped_session(sessionmaker(bind=engine))
 @app.route("/")
 def index():
     return render_template("Registration.html")
-@app.route("/Details",methods=["POST"])
+@app.route("/register",methods=["POST","GET"])
 def cont():
-    username=request.form.get("username")
-    Email=request.form.get("email")
-    city=request.form.get("city")
-    return render_template("Details.html",username=username,Email=Email,city=city)
+    if request.method=="GET":
+        return "Please submit the form instead."
+    else:    
+        username=request.form.get("username")
+        Email=request.form.get("email")
+        city=request.form.get("city")
+        return render_template("register.html",username=username,Email=Email,city=city)
