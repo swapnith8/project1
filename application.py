@@ -32,4 +32,4 @@ def cont():
         username=request.form.get("username")
         Email=request.form.get("email")
         city=request.form.get("city")
-        return render_template("register.html",username=username,Email=Email,city=city)
+        return render_template("Details.html",username=username,Email=Email,city=city)
