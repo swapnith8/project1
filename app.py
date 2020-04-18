@@ -41,10 +41,14 @@ def cont():
         return ("Registration.html")
     else:
         userdata=userschema(request.form["username"],request.form["email"],request.form["city"],request.form["pwd"])
-        # username=request.form.get("username")
-        # Email=request.form.get("email")
-        # city=request.form.get("city")
-        db.session.add(userdata)
-        db.session.commit()
+        u=userschema.query.filter_by(username=request.form['username']).first()
+        if u is not None:
+            variable="Username Already in Exists"
+            return render_template("Registration.html",message=variable)
+        else:
+            db.session.add(userdata)
+            db.session.commit()
+            variable1="Registered successfully!!"
+            return render_template("Registration.html",message1=variable1)
         # return render_template("Details.html",username=username,Email=Email,city=city)
-        return render_template("Registration.html")
+       
