@@ -51,4 +51,10 @@ def cont():
             variable1="Registered successfully!!"
             return render_template("Registration.html",message1=variable1)
         # return render_template("Details.html",username=username,Email=Email,city=city)
+@app.route('/admin')
+def admin():
+    allusersdata = userschema.query.all()
+    return render_template("adminer.html",admin = allusersdata)
+
+
        
