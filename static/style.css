@@ -21,8 +21,9 @@ div{
     color: white;
     border: white;
 }
+
 body{
-    background-image: url('1.jpg');
+    background-image: url('11.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
