@@ -79,6 +79,7 @@ In my python file where I created columns for the table I also added a timestamp
 Here the data will be retrieved from the table.
 render_template  for this route which helps to access the html and send it to the browser the user details which I retrieved from the database.
 
+
  Time elapsed for this task :40mins
 
 
