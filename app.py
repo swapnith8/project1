@@ -28,7 +28,6 @@ db.init_app(app)
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
 
-
 @app.route("/")
 def index():
     return render_template("Registration.html")
@@ -59,6 +58,7 @@ def login():
     user_data = userschema.query.filter_by(username = request.form['username']).first()
     if user_data is not None:
         if request.form['pwd'] == user_data.pwd:
+            session['username'] = request.form['username']
             return redirect('/home')
         else:
             var1 = "wrong Credentials"
@@ -69,12 +69,21 @@ def login():
 
 @app.route('/home')
 def homePage():
+    try:
+        user_data = session['username']
         return render_template("login.html")
-    
+    except:
+        var1 = "You must log in to view the homePage"
+        return render_template("Registration.html",message=var1)
 
 
 @app.route('/logout')
 def logout():
+    try:
+        user_data = session['username']
+        session.clear()
         var1= "Logged-Out"
         return render_template("Registration.html",message=var1)
-    
+    except:
+        var1 = "You must first log in to logout"
+        return render_template("Registration.html",message=var1)
