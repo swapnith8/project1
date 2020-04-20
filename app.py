@@ -80,7 +80,6 @@ def homePage():
 @app.route('/logout')
 def logout():
     try:
-        user_data = session['username']
         session.clear()
         var1= "Logged-Out"
         return render_template("Registration.html",message=var1)
