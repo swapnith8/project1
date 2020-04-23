@@ -11,6 +11,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 from tables import *
 
+
 app = Flask(__name__)
 # Check for environment variable
 if not os.getenv("DATABASE_URL"):
