@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 db = SQLAlchemy()
 
-
 class userschema(db.Model):
     __tablename__="userschema"
     username = db.Column(db.String,primary_key=True)

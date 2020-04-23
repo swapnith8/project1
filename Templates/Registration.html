@@ -36,8 +36,10 @@
             <label for="city"><strong>&emsp;&emsp;&nbsp;City(optional)&ensp;</strong></label>
             <input type="text" id="city"placeholder="Enter city" name="city"><br><br>
             <button type="submit" class="btn btn-primary mb-2">Register</button>
-            <div class="container signin">
-                <p>Already have an account? <a href="#">Sign in</a>.</p>
+          
+
+            <button type="submit" action="log" formaction = "/auth" class = "btn btn-primary mb-2">Login</button>
+         
         </form>
         {% if message1 %}
         <div class = "container" style="text-align: center;">

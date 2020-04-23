@@ -2,10 +2,13 @@
 import os
 
 
-from flask import Flask, session,request,render_template
+from flask import Flask, session,request,render_template,redirect
 from flask_session import Session
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine,desc
 from sqlalchemy.orm import scoped_session, sessionmaker
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
 from tables import *
 
 
@@ -25,12 +28,6 @@ Session(app)
 db.init_app(app)
 # Set up database
 engine = create_engine(os.getenv("DATABASE_URL"))
-Session = scoped_session(sessionmaker(bind=engine))
-session = Session()
-
-# db = scoped_session(sessionmaker(bind=engine))
-
-
 
 @app.route("/")
 def index():
@@ -51,11 +48,42 @@ def cont():
             db.session.commit()
             variable1="Registered successfully!!"
             return render_template("Registration.html",message1=variable1)
-        # return render_template("Details.html",username=username,Email=Email,city=city)
+
 @app.route('/admin')
 def admin():
-    allusersdata = userschema.query.all()
+    allusersdata = userschema.query.order_by(desc(userschema.time_stamp)).all()
     return render_template("adminer.html",admin = allusersdata)
 
+@app.route('/auth', methods=['POST'])
+def login():
+    user_data = userschema.query.filter_by(username = request.form['username']).first()
+    if user_data is not None:
+        if request.form['pwd'] == user_data.pwd:
+            session['username'] = request.form['username']
+            return redirect('/home')
+        else:
+            var1 = "wrong Credentials"
+            return render_template('Registration.html', message = var1)
+    else:
+        var1 = "Error: You are not a registered. Please first register to login"
+        return render_template("Registration.html", message = var1)
 
-       
+@app.route('/home')
+def homePage():
+    try:
+        user_data = session['username']
+        return render_template("login.html")
+    except:
+        var1 = "You must log in to view the homePage"
+        return render_template("Registration.html",message=var1)
+
+
+@app.route('/logout')
+def logout():
+    try:
+        session.clear()
+        var1= "Logged-Out"
+        return render_template("Registration.html",message=var1)
+    except:
+        var1 = "You must first log in to logout"
+        return render_template("Registration.html",message=var1)
