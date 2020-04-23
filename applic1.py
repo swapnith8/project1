@@ -33,7 +33,7 @@ def index():
     return render_template("Registration.html")
 @app.route("/register",methods=["POST","GET"])
 def cont():
-    db.create_all()
+    # db.create_all()
     if request.method=="GET":
         return ("Registration.html")
     else:
