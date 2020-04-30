@@ -82,5 +82,23 @@ render_template  for this route which helps to access the html and send it to th
 
  Time elapsed for this task :40mins
 
+Day-10
+Task 1 - Authenticate user and show user home
+On the registration page I adde a new button (Login), next to the Register button and by giving all credentials and on clicking the Login button,it shows "login succesfully" Valid users are shown the User Home and in the users page I included logout link by clicking on it , it comes to main page.I also inclued and alert like if any invalid users are shown in the registration page,it shows an error message.
+
+Time elapsed for this task: 30mins
+
+Task 2 - Allow authenticated user to home and logout
+Here I created a session variable for the authenticated user and stored the user object.if in the anyone directly access user page it will show an alert like "you must login to view the homepage".I also removed session variable in that method.
+
+
+Time elapsed for this task: 40mins
+
+Task 3 - Import Books
+Here I created two python files for books and other is for linking it to database.
+In that file I included an ISBN number, a title, an author, and a publication year.
+All the books are imported into your PostgreSQL database with respected tables and columns in it.
+
+Time elapsed for this task: 30mins
 
 
