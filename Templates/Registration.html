@@ -1,15 +1,69 @@
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>Registration!!</title>
         <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
     </head>
-    <body style="background-image: url_('11.jpg');">
+    <body style="background-image: url_('1.jpg');">
       <br>
-
+      <script type="text/javascript">
+        function checkPassword(str)
+        {
+        var validpwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        return validpwd.test(str);
+        }
+        function ValidateEmail(email) 
+        {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+          {
+            return true
+          }
+            return false
+        }
+        function checkForm(form)
+        {
+            console.log("Hello");
+            if(form.username.value == "") {
+                document.getElementById("textdisplay").innerHTML="Error: Username cannot be blank!";
+            return false;
+            }
+            if(form.email.value == "") {
+                document.getElementById("textdisplay").innerHTML="Error: emailadress cannot be blank!";
+            return false;
+            }
+            else if(!ValidateEmail(form.email.value)) {
+              document.getElementById("textdisplay").innerHTML="You have entered an invalid email address!";
+              return false;
+            } else {
+              if(form.password.value != "") {
+                if(form.password1.value != "") {
+                    if(form.password.value == form.password1.value) {
+                        if(!checkPassword(form.password.value)) {
+                            document.getElementById("textdisplay").innerHTML="The password should have at least 6 characters, with at least one uppercase letter, one lowercase letter, one number and a symbol.";
+                        return false;
+                        }
+                    }
+                    else {
+                        document.getElementById("textdisplay").innerHTML="Error: Password and Confirm Password are not same";
+                        return false;
+                    }
+                }
+                else {
+                    document.getElementById("textdisplay").innerHTML="Error: Confirm Password cannot be blank!";
+                    return false;
+                }
+            }
+            else {
+                document.getElementById("textdisplay").innerHTML="Error: Password cannot be blank!";
+                return false;
+                 }
+            }
+            
+            return true;
+        }
+       </script>
         <div class="container">
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
             <ul class="navbar-nav">
@@ -20,7 +74,7 @@
           </nav><br>
           <h1>&nbsp;CREATE A NEW ACCOUNT</h1> <br>
 
-        <form action="{{url_for('cont')}}"method="post">
+        <form action="{{url_for('cont')}}"method="post" onsubmit="return checkForm(this);">
             <label for ="username"><strong>&emsp;&emsp;&emsp;&nbsp;&nbsp;User name &ensp;</strong></label>
             <input type="text" id="username" placeholder="Enter Username"name="username"><br>
 
@@ -28,10 +82,10 @@
             <input type="text" id="email" placeholder="Enter Email" name="email"><br>
             
             <label for="pwd"><strong>&emsp;&emsp;&emsp;&emsp;&nbsp;Password&nbsp;&nbsp;</strong></label>
-            <input type="password" id="pwd" placeholder="Enter Password"name="pwd"><br>
+            <input type="password" id="pwd" placeholder="Enter Password"name="password"><br>
 
             <label for="pwd"><strong>Confirm Password &ensp;</strong></label>
-            <input type="password" id="pwd" placeholder="Re-enter same Password"name="pwd"><br>
+            <input type="password" id="pwd" placeholder="Re-enter same Password"name="password1"><br>
 
             <label for="city"><strong>&emsp;&emsp;&nbsp;City(optional)&ensp;</strong></label>
             <input type="text" id="city"placeholder="Enter city" name="city"><br><br>
@@ -39,7 +93,8 @@
           
 
             <button type="submit" action="log" formaction = "/auth" class = "btn btn-primary mb-2">Login</button>
-         
+
+            <h2 style="text-align: center; color:brown;" id = "textdisplay"></h2>
         </form>
         {% if message1 %}
         <div class = "container" style="text-align: center;">
